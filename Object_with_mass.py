@@ -38,3 +38,9 @@ class MassObject:
 
     def set_position(self, new_position:Vector):
         self._position = new_position
+
+    def uptade(self):
+        self._position.set_x(self._position.x() + self._speed.x() + 0.5*self._acceleration.x())
+        self._position.set_y(self._position.y() + self._speed.y() + 0.5*self._acceleration.y())
+        self._speed.set_x(self.speed().x() + self.acceleration().x())
+        self._speed.set_y(self.speed().y() + self.acceleration().y())
