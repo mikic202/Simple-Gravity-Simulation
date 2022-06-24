@@ -1,8 +1,8 @@
-
+from Vector import Vector
 
 
 class MassObject:
-    def __init__(self, name:str, mass:int, position:tuple, speed:int = 0, acceleration:int = 0) -> None:
+    def __init__(self, name:str, mass:int, position:Vector, speed:Vector = Vector(), acceleration:Vector = Vector()) -> None:
         self._name = name
         self._mass = mass
         self._speed = speed
@@ -30,11 +30,11 @@ class MassObject:
     def set_mass(self, new_mass:int):
         self._mass = new_mass
 
-    def set_acceleration(self, new_acceleration:int):
+    def set_acceleration(self, new_acceleration:Vector):
         self._acceleration = new_acceleration
 
-    def set_speed(self, new_speed:int):
+    def set_speed(self, new_speed:Vector):
         self._speed = new_speed
 
-    def set_position(self, new_position:int):
+    def set_position(self, new_position:Vector):
         self._position = new_position
