@@ -2,10 +2,14 @@ from Vector import Vector
 
 
 class MassObject:
-    def __init__(self, name:str, mass:int, position:Vector, speed:Vector = Vector(), acceleration:Vector = Vector()) -> None:
+    def __init__(self, name:str, mass:int, position:Vector, speed:Vector = 0, acceleration:Vector = 0) -> None:
         self._name = name
         self._mass = mass
+        if(speed == 0):
+            speed = Vector()
         self._speed = speed
+        if(acceleration == 0):
+            acceleration = Vector()
         self._acceleration = acceleration
         self._position = position
 
