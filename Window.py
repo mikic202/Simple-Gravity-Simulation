@@ -28,6 +28,7 @@ class Window:
             for object in self._objects:
                 pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 20)
             pygame.display.update()
+            self._WIN.fill((0, 0, 0))
 
 
 
