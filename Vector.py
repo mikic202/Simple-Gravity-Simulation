@@ -14,3 +14,12 @@ class Vector:
 
     def z(self):
         return self._z
+
+    def set_x(self, new_x_val):
+        self._x = new_x_val
+
+    def set_y(self, new_y_val):
+        self._y = new_y_val
+
+    def set_z(self, new_z_val):
+        self._z = new_z_val
