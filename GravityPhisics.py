@@ -16,6 +16,8 @@ class GravitiPhisics:
         for object in objects:
             object:MassObject
             f = 0
+            objects_a_x = 0
+            objects_a_y = 0
             for object2 in objects:
                 if(object2 != object):
                     object2:MassObject
@@ -26,9 +28,7 @@ class GravitiPhisics:
                     a_g = G * object2.mass()*10**24/(r_x**2 + r_y**2)
                     a_x = sqrt(a_g**2 / (abs(r_y/r_x)**2 + 1)) * (r_x/abs(r_x))
                     a_y = sqrt(a_g**2 / (abs(r_x/r_y)**2 + 1)) * (r_y/abs(r_y))
-                    # if(r_y/r_x > 10 * r_y):
-                    #     a_y = a_g * (r_y/abs(r_y))
-                    # if(r_x/r_y > 10 * r_x):
-                    #     a_x = a_g * (r_x/abs(r_x))
-                    object.set_acceleration(Vector(a_x, a_y))
+                    objects_a_x += a_x
+                    objects_a_y += a_y
+            object.set_acceleration(Vector(objects_a_x, objects_a_y))
 
