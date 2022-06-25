@@ -1,6 +1,9 @@
 from Vector import Vector
 
 
+TIME = 4
+
+
 class MassObject:
     def __init__(self, name:str, mass:int, position:Vector, speed:Vector = 0, acceleration:Vector = 0) -> None:
         self._name = name
@@ -44,7 +47,7 @@ class MassObject:
         self._position = new_position
 
     def uptade(self):
-        self._position.set_x(self._position.x() + self._speed.x() + 0.5*self._acceleration.x())
-        self._position.set_y(self._position.y() + self._speed.y() + 0.5*self._acceleration.y())
-        self._speed.set_x(self.speed().x() + self.acceleration().x())
-        self._speed.set_y(self.speed().y() + self.acceleration().y())
+        self._position.set_x(self._position.x() + self._speed.x()*TIME + 0.5*self._acceleration.x()*TIME**2)
+        self._position.set_y(self._position.y() + self._speed.y()*TIME + 0.5*self._acceleration.y()*TIME**2)
+        self._speed.set_x(self.speed().x() + self.acceleration().x()*TIME)
+        self._speed.set_y(self.speed().y() + self.acceleration().y()*TIME)
