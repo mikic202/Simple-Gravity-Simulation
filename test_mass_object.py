@@ -1,4 +1,4 @@
-from Object_with_mass import MassObject
+from Object_with_mass import TIME, MassObject
 from Vector import Vector
 
 
@@ -55,3 +55,11 @@ def test_set_acceleration():
     object.set_acceleration(Vector(4, 4))
 
     assert object.acceleration().x() == 4
+
+
+def test_update_object():
+    object = MassObject("nam", 10, Vector(2, 2, 2), Vector(2, 2, 2), Vector(1, 1, 1))
+    object.uptade()
+
+    assert object.position().x() == 2 + TIME*2 + 0.5*TIME**2*1
+    assert object.speed().x() == 2 + TIME*1
