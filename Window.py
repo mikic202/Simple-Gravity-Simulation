@@ -4,8 +4,12 @@ from GravityPhisics import GravitiPhisics
 from Object_with_mass import MassObject
 from Vector import Vector
 
+pygame.init()
 
-start_width = 800
+FONT = pygame.font.Font('freesansbold.ttf', 13)
+WHITE = (255, 255, 255)
+
+start_width = 1000
 start_height = 800
 # first_object_pos = Vector(0, 0)
 # second_object_pos = Vector(400, 693)
@@ -37,11 +41,22 @@ class Window:
                     pygame.quit()
                     sys.exit()
             for object in self._objects:
-                print(object.position().y())
-                print("\n")
                 pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 20)
+            self._display_parameters()
             pygame.display.update()
             self._WIN.fill((0, 0, 0))
+
+    def _display_parameters(self):
+        pixels_drawn = 0
+        for object in self._objects:
+            name_text = FONT.render(f'Name: {object.name()}', True, WHITE)
+            self._WIN.blit(name_text, (start_width - 200, pixels_drawn))
+            mass_text = FONT.render(f'Mass: {object.mass()}', True, WHITE)
+            self._WIN.blit(mass_text, (start_width - 100, pixels_drawn))
+            pixels_drawn += 13
+            position_text = FONT.render(f'Position: {object.position()}', True, WHITE)
+            self._WIN.blit(position_text, (start_width - 200, pixels_drawn))
+            pixels_drawn += 13
 
 
 
