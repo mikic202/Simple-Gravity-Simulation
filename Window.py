@@ -6,7 +6,8 @@ from Vector import Vector
 
 pygame.init()
 
-FONT = pygame.font.Font('freesansbold.ttf', 13)
+FONT_SIZE = 13
+FONT = pygame.font.Font('freesansbold.ttf', FONT_SIZE)
 WHITE = (255, 255, 255)
 
 start_width = 1000
@@ -20,10 +21,10 @@ start_height = 800
 
 first_object_pos = Vector(200, 100)
 second_object_pos = Vector(800, 800)
-first_object_v = Vector(1.4, 0)
-second_object_v = Vector(-1, 0)
+first_object_v = Vector(1.4, 0.0)
+second_object_v = Vector(-1.0, 0.0)
 third_object_pos = Vector(400, 400)
-third_object_v = Vector(0, 0)
+third_object_v = Vector(0.0, 0.0)
 
 
 class Window:
@@ -50,13 +51,19 @@ class Window:
         pixels_drawn = 0
         for object in self._objects:
             name_text = FONT.render(f'Name: {object.name()}', True, WHITE)
-            self._WIN.blit(name_text, (start_width - 200, pixels_drawn))
+            self._WIN.blit(name_text, (start_width - 250, pixels_drawn))
             mass_text = FONT.render(f'Mass: {object.mass()}', True, WHITE)
-            self._WIN.blit(mass_text, (start_width - 100, pixels_drawn))
-            pixels_drawn += 13
+            self._WIN.blit(mass_text, (start_width - 125, pixels_drawn))
+            pixels_drawn += FONT_SIZE
             position_text = FONT.render(f'Position: {object.position()}', True, WHITE)
-            self._WIN.blit(position_text, (start_width - 200, pixels_drawn))
-            pixels_drawn += 13
+            self._WIN.blit(position_text, (start_width - 250, pixels_drawn))
+            pixels_drawn += FONT_SIZE
+            speed_text = FONT.render(f'Speed: {object.speed()}', True, WHITE)
+            self._WIN.blit(speed_text, (start_width - 250, pixels_drawn))
+            pixels_drawn += FONT_SIZE
+            acceleration_text = FONT.render(f'Acceleration: {object.acceleration()}', True, WHITE)
+            self._WIN.blit(acceleration_text, (start_width - 250, pixels_drawn))
+            pixels_drawn += FONT_SIZE + 8
 
 
 
