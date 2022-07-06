@@ -49,6 +49,16 @@ class Window:
 
     def _display_parameters(self):
         pixels_drawn = 0
+        mass_text = FONT.render(f'Mass [kg * 10^24]', True, WHITE)
+        self._WIN.blit(mass_text, (start_width - 300, pixels_drawn))
+        position_text = FONT.render(f'Position [m * 10^7]', True, WHITE)
+        self._WIN.blit(position_text, (start_width - 175, pixels_drawn))
+        pixels_drawn += FONT_SIZE
+        speed_text = FONT.render(f'Speed  [m/s * 10^7]', True, WHITE)
+        self._WIN.blit(speed_text, (start_width - 300, pixels_drawn))
+        acceleration_text = FONT.render(f'Acceleration [m/s^2 * 10^7]', True, WHITE)
+        self._WIN.blit(acceleration_text, (start_width - 175, pixels_drawn))
+        pixels_drawn += FONT_SIZE + 8
         for object in self._objects:
             name_text = FONT.render(f'Name: {object.name()}', True, WHITE)
             self._WIN.blit(name_text, (start_width - 250, pixels_drawn))
