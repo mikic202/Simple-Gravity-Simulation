@@ -1,8 +1,10 @@
+from pickle import TRUE
 import sys
 import pygame
 from GravityPhisics import GravitiPhisics
 from Object_with_mass import MassObject
 from Vector import Vector
+import time
 
 pygame.init()
 
@@ -19,28 +21,28 @@ start_height = 800
 # third_object_pos = Vector(800, 1)
 # third_object_v = Vector(0.029, 0.05)
 
-first_object_pos = Vector(200, 100)
+first_object_pos = Vector(400, 250)
 second_object_pos = Vector(800, 800)
-first_object_v = Vector(1.4, 0.0)
+first_object_v = Vector(2.1, 0.0)
 second_object_v = Vector(-1.0, 0.0)
 third_object_pos = Vector(400, 400)
 third_object_v = Vector(0.0, 0.0)
+
+#, MassObject("b", .00001, second_object_pos, second_object_v)
 
 
 class Window:
     def __init__(self) -> None:
         self._WIN = pygame.display.set_mode((start_width, start_height))
-        self._objects = {MassObject("a", 1.5, first_object_pos, first_object_v), MassObject("b", .00001, second_object_pos, second_object_v), MassObject("c", 1000, third_object_pos, third_object_v)}
+        self._objects = {MassObject("a", 1.5, first_object_pos, first_object_v), MassObject("c", 1000, third_object_pos, third_object_v)}
         self._phisics = GravitiPhisics()
         self._start()
 
     def _start(self):
         while True:
             self._phisics.update_objects(self._objects)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+            self._check_quit()
+            self._check_pause()
             self._draw_objects()
             self._display_parameters()
             pygame.display.update()
@@ -76,9 +78,27 @@ class Window:
 
     def _draw_objects(self):
         for object in self._objects:
-            pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 20)
+            pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 15)
             name_text = FONT.render(f'{object.name()}', True, WHITE)
             self._WIN.blit(name_text, [object.position().x(), object.position().y() + 20])
+
+    def _check_quit(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+    def _check_pause(self):
+        keys_press = pygame.key.get_pressed()
+        if keys_press[pygame.K_SPACE]:
+            needs_to_stop = True
+            time.sleep(2)
+            while needs_to_stop:
+                self._check_quit()
+                keys_press = pygame.key.get_pressed()
+                if keys_press[pygame.K_SPACE]:
+                    needs_to_stop = False
+            time.sleep(1)
 
 
 if __name__ == "__main__":
