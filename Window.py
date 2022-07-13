@@ -41,8 +41,7 @@ class Window:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-            for object in self._objects:
-                pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 20)
+            self._draw_objects()
             self._display_parameters()
             pygame.display.update()
             self._WIN.fill((0, 0, 0))
@@ -75,6 +74,12 @@ class Window:
             self._WIN.blit(acceleration_text, (start_width - 250, pixels_drawn))
             pixels_drawn += FONT_SIZE + 8
 
+    def _draw_objects(self):
+        for object in self._objects:
+            pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 20)
+            name_text = FONT.render(f'{object.name()}', True, WHITE)
+            self._WIN.blit(name_text, [object.position().x(), object.position().y() + 20])
 
 
-win = Window()
+if __name__ == "__main__":
+    win = Window()
