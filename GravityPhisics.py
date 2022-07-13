@@ -26,8 +26,10 @@ class GravitiPhisics:
                     if(abs(r_x)<10):
                         f = 1
                     a_g = G * object2.mass()*10**24/(r_x**2 + r_y**2)
-                    a_x = sqrt(a_g**2 / (abs(r_y/r_x)**2 + 1)) * (r_x/abs(r_x))
-                    a_y = sqrt(a_g**2 / (abs(r_x/r_y)**2 + 1)) * (r_y/abs(r_y))
+                    cos = r_y/sqrt(r_x**2 + r_y**2)
+                    sin = r_x/sqrt(r_x**2 + r_y**2)
+                    a_x = a_g * sin
+                    a_y = a_g * cos
                     objects_a_x += a_x
                     objects_a_y += a_y
             object.set_acceleration(Vector(objects_a_x, objects_a_y))
