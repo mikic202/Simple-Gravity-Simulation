@@ -5,8 +5,9 @@ TIME = 4
 
 
 class MassObject:
-    def __init__(self, name:str, mass:int, position:Vector, speed:Vector = 0, acceleration:Vector = 0) -> None:
+    def __init__(self, name:str, mass:int, position:Vector, radius:int, speed:Vector = 0, acceleration:Vector = 0) -> None:
         self._name = name
+        self._radius = radius
         self._mass = mass
         if(speed == 0):
             speed = Vector()
@@ -31,6 +32,9 @@ class MassObject:
     def position(self):
         return self._position
 
+    def radius(self):
+        return self._radius
+
     def set_name(self, new_name:str):
         self._name = new_name
 
@@ -45,6 +49,9 @@ class MassObject:
 
     def set_position(self, new_position:Vector):
         self._position = new_position
+
+    def set_radius(self, new_radius:int):
+        self._radius = new_radius
 
     def uptade(self):
         self._position.set_x(self._position.x() + self._speed.x()*TIME + 0.5*self._acceleration.x()*TIME**2)
