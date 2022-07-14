@@ -22,9 +22,9 @@ start_height = 800
 # third_object_v = Vector(0.029, 0.05)
 
 first_object_pos = Vector(400, 250)
-second_object_pos = Vector(800, 800)
-first_object_v = Vector(2.1, 0.0)
-second_object_v = Vector(-1.0, 0.0)
+second_object_pos = Vector(400, 800)
+first_object_v = Vector(2.108712, 0.0)
+second_object_v = Vector(-1.2913, 0.0)
 third_object_pos = Vector(400, 400)
 third_object_v = Vector(0.0, 0.0)
 
@@ -34,7 +34,7 @@ third_object_v = Vector(0.0, 0.0)
 class Window:
     def __init__(self) -> None:
         self._WIN = pygame.display.set_mode((start_width, start_height))
-        self._objects = {MassObject("a", 1.5, first_object_pos, first_object_v), MassObject("c", 1000, third_object_pos, third_object_v)}
+        self._objects = [MassObject("a", 1.5, first_object_pos, 10, first_object_v), MassObject("c", 1000, third_object_pos, 15, third_object_v), MassObject("b", .00001, second_object_pos, 5, second_object_v)]
         self._phisics = GravitiPhisics()
         self._start()
 
@@ -55,9 +55,9 @@ class Window:
         position_text = FONT.render(f'Position [m * 10^7]', True, WHITE)
         self._WIN.blit(position_text, (start_width - 175, pixels_drawn))
         pixels_drawn += FONT_SIZE
-        speed_text = FONT.render(f'Speed  [m/s * 10^7]', True, WHITE)
+        speed_text = FONT.render(f'Speed  [m/s * 10^5]', True, WHITE)
         self._WIN.blit(speed_text, (start_width - 300, pixels_drawn))
-        acceleration_text = FONT.render(f'Acceleration [m/s^2 * 10^7]', True, WHITE)
+        acceleration_text = FONT.render(f'Acceleration [km/s^2]', True, WHITE)
         self._WIN.blit(acceleration_text, (start_width - 175, pixels_drawn))
         pixels_drawn += FONT_SIZE + 8
         for object in self._objects:
@@ -78,9 +78,9 @@ class Window:
 
     def _draw_objects(self):
         for object in self._objects:
-            pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], 15)
+            pygame.draw.circle(self._WIN, (255, 255, 255), [object.position().x(), object.position().y()], object.radius())
             name_text = FONT.render(f'{object.name()}', True, WHITE)
-            self._WIN.blit(name_text, [object.position().x(), object.position().y() + 20])
+            self._WIN.blit(name_text, [object.position().x(), object.position().y() + object.radius()])
 
     def _check_quit(self):
         for event in pygame.event.get():
@@ -98,7 +98,7 @@ class Window:
                 keys_press = pygame.key.get_pressed()
                 if keys_press[pygame.K_SPACE]:
                     needs_to_stop = False
-            time.sleep(1)
+            time.sleep(.5)
 
 
 if __name__ == "__main__":
