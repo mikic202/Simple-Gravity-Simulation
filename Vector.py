@@ -25,4 +25,4 @@ class Vector:
         self._z = new_z_val
 
     def __str__(self) -> str:
-        return f'{self._x:.3}    {self._y:.3}'
+        return f'{self._x:.4}    {self._y:.4}'
