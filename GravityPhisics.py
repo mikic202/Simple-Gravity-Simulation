@@ -21,11 +21,11 @@ class GravitiPhisics:
             for object2 in objects:
                 if(object2 != object):
                     object2:MassObject
-                    r_x = (object2.position().x() - object.position().x())*10**7
-                    r_y = (object2.position().y() - object.position().y())*10**7
+                    r_x = (object2.position().x() - object.position().x())*10**9
+                    r_y = (object2.position().y() - object.position().y())*10**9
                     if(abs(r_x)<10):
                         f = 1
-                    a_g = G * object2.mass()*10**24/(r_x**2 + r_y**2)
+                    a_g = G * object2.mass()/(r_x**2 + r_y**2)
                     cos = r_y/sqrt(r_x**2 + r_y**2)
                     sin = r_x/sqrt(r_x**2 + r_y**2)
                     a_x = a_g * sin

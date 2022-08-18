@@ -23,7 +23,7 @@ start_height = 800
 
 first_object_pos = Vector(400, 250)
 second_object_pos = Vector(400, 800)
-first_object_v = Vector(2.108712, 0.0)
+first_object_v = Vector(0.93, 0.0)
 second_object_v = Vector(-1.2913, 0.0)
 third_object_pos = Vector(400, 400)
 third_object_v = Vector(0.0, 0.0)
@@ -34,7 +34,7 @@ third_object_v = Vector(0.0, 0.0)
 class Window:
     def __init__(self) -> None:
         self._WIN = pygame.display.set_mode((start_width, start_height))
-        self._objects = [MassObject("a", 1.5, first_object_pos, 10, first_object_v), MassObject("c", 1000, third_object_pos, 15, third_object_v), MassObject("b", .00001, second_object_pos, 5, second_object_v)]
+        self._objects = [MassObject("a", 3.28*10**23, first_object_pos, 10, first_object_v), MassObject("c", 1.98*10**30, third_object_pos, 15, third_object_v), MassObject("b", .00001, second_object_pos, 5, second_object_v)]
         self._phisics = GravitiPhisics()
         self._start()
 
@@ -50,12 +50,12 @@ class Window:
 
     def _display_parameters(self):
         pixels_drawn = 0
-        mass_text = FONT.render(f'Mass [kg * 10^24]', True, WHITE)
+        mass_text = FONT.render(f'Mass [kg]', True, WHITE)
         self._WIN.blit(mass_text, (start_width - 300, pixels_drawn))
-        position_text = FONT.render(f'Position [m * 10^7]', True, WHITE)
+        position_text = FONT.render(f'Position [m * 10^10]', True, WHITE)
         self._WIN.blit(position_text, (start_width - 175, pixels_drawn))
         pixels_drawn += FONT_SIZE
-        speed_text = FONT.render(f'Speed  [m/s * 10^5]', True, WHITE)
+        speed_text = FONT.render(f'Speed  [m/s * 10^4]', True, WHITE)
         self._WIN.blit(speed_text, (start_width - 300, pixels_drawn))
         acceleration_text = FONT.render(f'Acceleration [km/s^2]', True, WHITE)
         self._WIN.blit(acceleration_text, (start_width - 175, pixels_drawn))
