@@ -13,7 +13,7 @@ FONT = pygame.font.Font('freesansbold.ttf', FONT_SIZE)
 WHITE = (255, 255, 255)
 
 start_width = 1000
-start_height = 800
+start_height = 1000
 # first_object_pos = Vector(0, 0)
 # second_object_pos = Vector(400, 693)
 # first_object_v = Vector(0.05, -0.029)
@@ -24,7 +24,7 @@ start_height = 800
 first_object_pos = Vector(400, 250)
 second_object_pos = Vector(400, 800)
 first_object_v = Vector(0.93, 0.0)
-second_object_v = Vector(-1.2913, 0.0)
+second_object_v = Vector(-.5745, 0.0)
 third_object_pos = Vector(400, 400)
 third_object_v = Vector(0.0, 0.0)
 
